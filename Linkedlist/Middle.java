@@ -1,9 +1,7 @@
 import java.util.Scanner;
 
-/**
- * DeleteFromEnd
- */
-public class DeleteFromEnd {
+public class Middle {
+
     Node head;
     static class Node{
         int value;
@@ -34,45 +32,25 @@ public class DeleteFromEnd {
         }
         System.out.println();
     }
-    public Node reverse(Node head){
-        Node cur=head;
-        Node p=null;
-        while(cur!=null){
-            Node temp=cur.next;
-            cur.next=p;
-            p=cur;
-            cur=temp;
+    public void FindMiddle(Node head){
+        Node rabbit=head;
+        Node turtle=head;
+        while(rabbit!=null && rabbit.next!=null){
+            
+            rabbit=rabbit.next.next;  
+            turtle=turtle.next; 
         }
-        return p;
-    }
-    public Node Deletion(Node head,int pos){
-        Node cur=head;
-        Node temp=null;
-        if(pos==1 || pos>5){
-            head=cur.next;
-            return head;
-        }
-        for(int i=0;i<pos-2;i++){
-            cur=cur.next;
-        }
-        temp=cur.next;
-        cur.next=temp.next;
-
-        return head;
+        System.out.print("Middle is "+ turtle.value);
     }
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
-        DeleteFromEnd ll=new DeleteFromEnd();
+        Middle ll=new Middle();
         int size=sc.nextInt();
         for(int i=0;i<size;i++){
             ll.Insert(sc.nextInt());
         }
-        int deletepos=sc.nextInt();
-        Node head=ll.reverse(ll.head);
-        ll.printLL(head);
-        head=ll.Deletion(head,deletepos);
-        ll.printLL(head);
-        ll.printLL(ll.reverse(head));
+        //ll.printLL(ll.head);
+        ll.FindMiddle(ll.head);
         sc.close();
     }
 }
